@@ -110,13 +110,53 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/actions.js":
+/*!************************!*\
+  !*** ./src/actions.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _utils_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/api.js */ \"./src/utils/api.js\");\n/* harmony import */ var _utils_populateUI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/populateUI.js */ \"./src/utils/populateUI.js\");\n\r\n\r\n\r\nconst refreshBtn = document.querySelector(\".reset-button\");\r\nconst scoresContainer = document.querySelector(\".scores-list\");\r\nconst form = document.querySelector(\".form\");\r\n\r\nconst actions = () => {\r\n  refreshBtn.addEventListener(\"click\", async () => {\r\n    const { result } = await (0,_utils_api_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n\r\n    (0,_utils_populateUI_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(result, scoresContainer);\r\n  });\r\n\r\n  form.addEventListener(\"submit\", (e) => {\r\n    e.preventDefault();\r\n\r\n    const name = e.target.name.value;\r\n    const score = e.target.score.value;\r\n\r\n    if (!name.trim() || !score) return;\r\n\r\n    (0,_utils_api_js__WEBPACK_IMPORTED_MODULE_0__.postData)({\r\n      user: name,\r\n      score: +score,\r\n    });\r\n\r\n    // Empty inputs\r\n    e.target.name.value = \"\";\r\n    e.target.score.value = \"\";\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (actions);\r\n\n\n//# sourceURL=webpack://webpack-config/./src/actions.js?");
+
+/***/ }),
+
+/***/ "./src/globals.js":
+/*!************************!*\
+  !*** ./src/globals.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"API_URL\": () => (/* binding */ API_URL),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst gameId = \"zSVfxTTHl9NPsUV1fTVI\";\r\nconst API_URL =\r\n  \"https://us-central1-js-capstone-backend.cloudfunctions.net/api/games\";\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (gameId);\r\n\n\n//# sourceURL=webpack://webpack-config/./src/globals.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n\n//# sourceURL=webpack://webpack-config/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions.js */ \"./src/actions.js\");\n/* harmony import */ var _utils_api_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/api.js */ \"./src/utils/api.js\");\n/* harmony import */ var _utils_populateUI_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/populateUI.js */ \"./src/utils/populateUI.js\");\n\n\n\n\n\nconst scoresContainer = document.querySelector(\".scores-list\");\n\n(0,_actions_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n// Populate ui on page load\n\nconst updateUIonPageLoad = async () => {\n  const { result } = await (0,_utils_api_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n  (0,_utils_populateUI_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(result, scoresContainer);\n};\n\nupdateUIonPageLoad();\n\n\n//# sourceURL=webpack://webpack-config/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/utils/api.js":
+/*!**************************!*\
+  !*** ./src/utils/api.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"postData\": () => (/* binding */ postData)\n/* harmony export */ });\n/* harmony import */ var _globals_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../globals.js */ \"./src/globals.js\");\n\r\n\r\nconst API_FULL_URL = `${_globals_js__WEBPACK_IMPORTED_MODULE_0__.API_URL}/${_globals_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]}/scores`;\r\n\r\nconst getData = async () => {\r\n  try {\r\n    const res = await fetch(API_FULL_URL);\r\n\r\n    if (!res.ok) throw new Error(\"Something went wrong\");\r\n    const data = await res.json();\r\n\r\n    return data;\r\n  } catch (error) {\r\n    console.log(error);\r\n  }\r\n};\r\n\r\nconst postData = async (formData) => {\r\n  try {\r\n    const res = await fetch(API_FULL_URL, {\r\n      method: \"POST\",\r\n      headers: {\r\n        \"Content-Type\": \"application/json\",\r\n      },\r\n      body: JSON.stringify(formData),\r\n    });\r\n\r\n    if (!res.ok) throw new Error(\"Something went wrong\");\r\n\r\n    // const formattedResult = await res.json();\r\n  } catch (error) {\r\n    console.log(error);\r\n  }\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getData);\r\n\n\n//# sourceURL=webpack://webpack-config/./src/utils/api.js?");
+
+/***/ }),
+
+/***/ "./src/utils/populateUI.js":
+/*!*********************************!*\
+  !*** ./src/utils/populateUI.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst generateMarkup = (scoresArr) => {\r\n  let scoresMarkup = \"\";\r\n  scoresArr.forEach((score) => {\r\n    scoresMarkup += `<li class=\"score-item\">${score.user}: ${score.score}</li>`;\r\n  });\r\n  return scoresMarkup;\r\n};\r\n\r\nconst populateUI = (scores, containerEle) => {\r\n  const markup = generateMarkup(scores);\r\n\r\n  containerEle.innerHTML = markup;\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (populateUI);\r\n\n\n//# sourceURL=webpack://webpack-config/./src/utils/populateUI.js?");
 
 /***/ })
 

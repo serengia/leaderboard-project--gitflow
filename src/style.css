@@ -24,11 +24,83 @@ footer {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3.6rem;
+  margin-bottom: 2rem;
+}
+
+.row {
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 main {
   min-height: 85vh;
   background-color: #f6f6f6;
   padding: 3rem 0;
+}
+
+.container {
+  display: flex;
+  gap: 4rem;
+}
+
+.reset-scores {
+  flex: 1;
+}
+
+.reset-scores-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scores-table {
+  border: 1px solid #ddd;
+  border-radius: 0.4rem;
+  margin-top: 1rem;
+}
+
+.scores-list {
+  list-style: none;
+}
+
+.score-item {
+  padding: 0.6rem 1.4rem;
+}
+
+.score-item:nth-child(even) {
+  background-color: #ddd;
+}
+
+.add-score {
+  flex: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.form input {
+  padding: 0.6rem;
+  border: #ddd 1px solid;
+  border-radius: 0.4rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 0.8rem 1.8rem;
+  border: #ddd 1px solid;
+  border-radius: 0.4rem;
+}
+
+.submit-button {
+  align-self: flex-end;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
 }

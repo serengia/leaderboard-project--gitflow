@@ -20,14 +20,12 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# Todo list App -- with Webpack <a name="todo-list-app--with-webpack"></a>
+# Leaderboard App -- with Webpack <a name="todo-list-app--with-webpack"></a>
 
-> Todo List App project build using webpack.
+> Leaderboard App project build using webpack. You can a new scores and submitting it to an API. The data displayed is also fetched from the API.
 
 ## 🛠 Built With <a name="built-with"></a>
 
-- Html
-- Css
 - Javascript
 - Webpack
 

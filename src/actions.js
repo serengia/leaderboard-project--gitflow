@@ -1,4 +1,5 @@
 import getData, { postData } from "./utils/api.js";
+import displayMessage from "./utils/displayMessage.js";
 import populateUI from "./utils/populateUI.js";
 
 const refreshBtn = document.querySelector(".reset-button");
@@ -28,6 +29,13 @@ const actions = () => {
     // Empty inputs
     e.target.name.value = "";
     e.target.score.value = "";
+
+    // Display success
+    displayMessage({
+      message: "Successfully added score.",
+      status: "success",
+      parentEl: form,
+    });
   });
 };
 

@@ -7,7 +7,7 @@ const displayMessage = (options) => {
 
   parentEl.insertAdjacentHTML("afterbegin", markup);
   setTimeout(() => {
-    document.querySelector("message")?.remove();
+    document.querySelector(".message")?.remove();
   }, 2000);
 };
 

@@ -99,6 +99,18 @@ main {
   align-self: flex-end;
 }
 
+.message {
+  font-size: 1.6rem;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: tomato;
+}
+
 @media (max-width: 900px) {
   .container {
     flex-direction: column;
